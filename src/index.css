@@ -1,0 +1,84 @@
+
+.post-list-container {
+  padding: 20px;
+  background-color: #f4f4f9;
+  min-height: 100vh;
+}
+
+.heading {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.post-container {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.post-date,
+.post-author,
+.post-read-time {
+  font-size: 14px;
+  color: #555;
+}
+
+.post-body,
+.post-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+.grayed-out {
+  background-color: #f9f9f9;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.load-button,
+.delete-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.load-button:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+}
+
+.deleted {
+  color: #ff4d4d;
+  font-style: italic;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+
+}
