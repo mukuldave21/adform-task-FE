@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts, fetchUsers, deletePost } from '../redux/actions';
+import { fetchPosts, fetchUsers, deletePost, setFilterAction,setDeletedPostArray } from '../redux/actions';
 import { selectEnhancedPosts } from '../redux/selectors';
 import Loader from './Loader';
 import moment from 'moment';
@@ -12,7 +12,7 @@ function PostList() {
   const [loaded, setLoaded] = useState(false);
   const [loadButton, setLoadButton] = useState(false);
 
-  const handleDelete = async (id) => {
+  const handleMarkAsRead = async (id) => {
     try {
       await dispatch(deletePost(id));
     } catch {
@@ -32,6 +32,14 @@ function PostList() {
     }
   };
 
+  const handleSearchChange = (e) => {
+    dispatch(setFilterAction(e.target.value));
+  }
+
+  const handleDeletePostClick = (id) => {
+    dispatch(setDeletedPostArray(id));
+  }
+
   return (
     <div className="post-list-container">
       {loadButton ? (
@@ -40,6 +48,11 @@ function PostList() {
           {(loading || !loaded) &&  <div className="loader-container">
     <Loader />
   </div>}
+ <div> 
+  <input type='text' onChange={handleSearchChange} className='Search-filter-input mb-5' placeholder='search to filter'/>
+ </div>
+ 
+
           {posts.map((post) => (
             <div
               key={post.id}
@@ -58,12 +71,19 @@ function PostList() {
               {!post.deleted && (
                 <button
                   className="delete-button"
-                  onClick={() => handleDelete(post.id)}
+                  onClick={() => handleMarkAsRead(post.id)}
                 >
                   Mark as read
                 </button>
               )}
               {post.deleted && <p className="deleted">Post marked as read.</p>}
+
+          <button
+  className='delete-button ml-2'
+  onClick={() => handleDeletePostClick(post.id)}
+>
+  Delete
+</button>
             </div>
           ))}
         </>
